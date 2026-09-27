@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KittneOS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="topbar">
+        <img id="logo" src="img/cat.jpg" alt="kitty" width="45px" height="45px">
+        <p id="welcomeOpen">KittenOS</p>
+        <p id="time">Time</p>
+    </div>
+
+    <!-- Welcome Message App -->
+    <div class="window" id="welcome">
+        <div class="windowHeader" id="welcomeHeader">
+            <p style="margin-left: 10px;">Welcome Message</p>
+            <button class="closeButton" id="welcomeClose" style="margin-right: 10px;"></button>
+        </div>
+        <h1>Welcome to KittenOS</h1>
+        <div id="intro-message">
+            <img id="profilepic" src="img/profile.png" alt="Profile Picture" width="150px">
+            <p>Hello, this is KittenOS, take a moment to explore all the features! <br> I always loved web development but never found the opportunity to make something real. <br>But today I'm making my own WebOS!</p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=iXwK7NYPYzs&list=RDiXwK7NYPYzs&start_radio=1">Cat.</a>
+    </div>
+
+    <!-- Paw Notes App -->
+
+    <div class="window" id="pawNotes">
+        <div class="windowHeader" id="pawNotesHeader">
+            <p style="margin-left: 10px;">PawNotes!!!</p>
+            <button class="closeButton" id="pawNotesClose" style="margin-right: 10px;"></button>
+        </div>
+        <div>
+            <img src="img/PawNotes.png" alt="Profile Picture" width="150px">
+            <p>This is PawNotes</p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=iXwK7NYPYzs&list=RDiXwK7NYPYzs&start_radio=1">Cat.</a>
+    </div>
+
+    <!-- Desktop Icons -->
+    <div id="desktopApps" style="padding-top: 100px; padding-left: 20px;">
+        <div class="icon">
+            <img src="img/PawNotes.png" width="64px" style="border-radius: 12px;">
+            <p style="margin: 0px;">Paw Notes</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
