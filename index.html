@@ -3,50 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KittneOS</title>
+    <title>NeuOS</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
+
+
+
+
+
+
+    <!-- Topbar -->
     <div id="topbar">
-        <img id="logo" src="img/cat.jpg" alt="kitty" width="45px" height="45px">
-        <p id="welcomeOpen">KittenOS</p>
-        <p id="time">Time</p>
+        <i class="fa-solid fa-circle-user topbar-icon"></i>
+        <p id="welcomeOpen">NeuOS</p>
+        <p id="time">00:00:00</p>
     </div>
+
+
+
+
+
 
     <!-- Welcome Message App -->
     <div class="window" id="welcome">
         <div class="windowHeader" id="welcomeHeader">
-            <p style="margin-left: 10px;">Welcome Message</p>
-            <button class="closeButton" id="welcomeClose" style="margin-right: 10px;"></button>
+            <p>Welcome Message</p>
+            <button class="closeButton" onclick="closeWindow('welcome')"></button>
         </div>
-        <h1>Welcome to KittenOS</h1>
+        <h1>Welcome to NeuOS</h1>
         <div id="intro-message">
-            <img id="profilepic" src="img/profile.png" alt="Profile Picture" width="150px">
-            <p>Hello, this is KittenOS, take a moment to explore all the features! <br> I always loved web development but never found the opportunity to make something real. <br>But today I'm making my own WebOS!</p>
+            <img id="profilepic" src="img/profile.png" alt="Profile Picture" width="150px" onerror="this.style.display='none'">
+            <p>Hello! This is NeuOS, a neumorphic web OS that runs in the browser. <br>This architecture relies on localized DOM manipulation and Canvas APIs. <br>System ready.</p>
         </div>
-        <a href="https://www.youtube.com/watch?v=iXwK7NYPYzs&list=RDiXwK7NYPYzs&start_radio=1">Cat.</a>
     </div>
 
-    <!-- Paw Notes App -->
 
-    <div class="window" id="pawNotes">
-        <div class="windowHeader" id="pawNotesHeader">
-            <p style="margin-left: 10px;">PawNotes!!!</p>
-            <button class="closeButton" id="pawNotesClose" style="margin-right: 10px;"></button>
+
+
+
+
+
+    <!-- Notes App -->
+    <div class="window" id="note" style="display: none;">
+        <div class="windowHeader" id="noteHeader">
+            <p>Notes Application</p>
+            <button class="closeButton" onclick="closeWindow('note')"></button>
         </div>
-        <div>
-            <img src="img/PawNotes.png" alt="Profile Picture" width="150px">
-            <p>This is PawNotes</p>
+        <div class="app-toolbar">
+            <i class="fa-solid fa-note-sticky toolbar-icon"></i>
+            <p style="flex-grow: 1;">Notes Editor</p>
+            <button class="neu-button" onclick="createNewNote()">New Note</button>
         </div>
-        <a href="https://www.youtube.com/watch?v=iXwK7NYPYzs&list=RDiXwK7NYPYzs&start_radio=1">Cat.</a>
+        <div class="app-layout">
+            <div id="sidebar" class="neu-inset">
+                <!-- Sidebar items injected via JS -->
+            </div>
+            <div id="notesContent" class="neu-inset" contenteditable="true" oninput="saveCurrentNote()">
+                <!-- Note content injected via JS -->
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+    <!-- Paint App -->
+    <div class="window" id="paint" style="display: none;">
+        <div class="windowHeader" id="paintHeader">
+            <p>Paint Application</p>
+            <button class="closeButton" onclick="closeWindow('paint')"></button>
+        </div>
+        <div class="app-toolbar">
+            <i class="fa-solid fa-palette toolbar-icon"></i>
+            <p style="flex-grow: 1;">Canvas Setup</p>
+            <input type="color" id="colorPicker" value="#332a3a" class="neu-input" title="Select Color">
+            <input type="range" id="brushSize" min="1" max="20" value="5" class="neu-input" title="Brush Size">
+            <button class="neu-button" onclick="clearCanvas()">Clear Canvas</button>
+        </div>
+        <div class="app-layout">
+            <canvas id="paintCanvas" class="neu-inset" width="700" height="400"></canvas>
+        </div>
+    </div>
+
+
+
+
 
     <!-- Desktop Icons -->
-    <div id="desktopApps" style="padding-top: 100px; padding-left: 20px;">
-        <div class="icon">
-            <img src="img/PawNotes.png" width="64px" style="border-radius: 12px;">
-            <p style="margin: 0px;">Paw Notes</p>
+    <div id="desktopApps">
+        <div class="icon" onclick="handleIconTap(this, 'note')">
+            <i class="fa-solid fa-note-sticky icon-graphic"></i>
+            <p>Notes</p>
+        </div>
+        <div class="icon" onclick="handleIconTap(this, 'paint')">
+            <i class="fa-solid fa-palette icon-graphic"></i>
+            <p>Paint</p>
         </div>
     </div>
 

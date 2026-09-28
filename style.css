@@ -1,5 +1,4 @@
 :root {
-    /* Anchoring to a lighter variant of the original rgb(222, 190, 255) */
     --base-color: #e0d4eb;
     --shadow-light: #ffffff;
     --shadow-dark: #b8abc2;
@@ -16,10 +15,18 @@ body {
     overflow: hidden;
 }
 
-h1 {
-    margin: 0px;
+/* Base Neumorphic Classes */
+.neu-raised {
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    background-color: var(--base-color);
 }
 
+.neu-inset {
+    box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+    background-color: var(--base-color);
+}
+
+/* Topbar Components */
 #topbar {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -31,52 +38,25 @@ h1 {
     border-radius: 15px;
     box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
     color: var(--text-main);
+    z-index: 1000;
 }
 
-#logo {
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: 50%;
-    padding: 5px;
-    margin-left: 12px;
-    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-}
-
-#time {
-    text-align: right;
-    padding-right: 12px;
-}
-
-#profilepic {
-    border-radius: 50%;
-    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-    border: 4px solid var(--base-color);
-}
-
-#welcome {
-    text-align: center;
-    width: 550px;
-}
-
-#intro-message {
-    text-align: left;
-    display: flex;
-    max-width: 100%;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-#intro-message p {
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-left: 12px;
+.topbar-icon {
+    margin-left: 15px;
+    font-size: 20px;
 }
 
 #welcomeOpen:hover {
     cursor: pointer;
-    font-style: italic;
+    font-weight: bold;
 }
 
+#time {
+    text-align: right;
+    padding-right: 15px;
+}
+
+/* Window Framework */
 .window {
     background-color: var(--base-color);
     border-radius: 20px;
@@ -87,67 +67,189 @@ h1 {
     transform: translate(-50%, -50%);
     box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
     border: none;
+    min-width: 500px;
 }
 
 .windowHeader {
     background-color: var(--base-color);
     margin-left: -20px;
     margin-right: -20px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    width: calc(100% + 40px);
+    padding: 5px 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    /* Soft separator mapping the boundary of the window header */
     box-shadow: inset 0px -4px 6px -4px var(--shadow-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: grab;
 }
 
+.windowHeader:active {
+    cursor: grabbing;
+}
+
+/* Window Controls */
 .closeButton {
     border: none;
-    background-color: var(rgb(255,0,0));
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-image: url(img/close.svg);
-    background-position: center;
-    padding: 14px;
+    background-color: var(--base-color);
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
     transition: all 0.2s ease;
+    position: relative;
 }
 
-.closeButton:hover {
-    cursor: pointer;
+.closeButton::before, .closeButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: var(--text-main);
 }
 
+.closeButton::before { transform: translate(-50%, -50%) rotate(45deg); }
+.closeButton::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.closeButton:hover { cursor: pointer; }
 .closeButton:active {
     box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
-.selected {
-    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light) !important;
-    padding: 15px;
-    border-radius: 16px;
-    border: none !important;
+/* Desktop Environment */
+#desktopApps {
+    padding-top: 100px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .icon {
     text-align: center;
-    width: fit-content;
+    width: 80px;
     padding: 15px;
     border-radius: 16px;
     box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
     background-color: var(--base-color);
     transition: box-shadow 0.2s ease;
+    user-select: none;
 }
 
-.icon:hover {
+.icon p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+}
+
+.icon:hover { cursor: pointer; }
+
+.icon.selected {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+}
+
+.icon-graphic {
+    font-size: 35px;
+    color: var(--text-main);
+}
+
+/* App Specific Layouts */
+.app-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.toolbar-icon {
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+}
+
+.app-layout {
+    display: flex;
+    gap: 15px;
+    border-radius: 10px;
+    height: 400px;
+}
+
+/* Notes App */
+#note { width: 850px; }
+
+#sidebar {
+    width: 200px;
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-note-item {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+    transition: all 0.1s ease;
+}
+
+.sidebar-note-item.active-note {
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+
+.sidebar-note-item p { margin: 0; }
+.sidebar-note-item .note-title { font-weight: bold; }
+.sidebar-note-item .note-date { font-size: 12px; opacity: 0.7; margin-top: 5px; }
+
+#notesContent {
+    flex-grow: 1;
+    border-radius: 8px;
+    padding: 20px;
+    outline: none;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+
+
+
+
+/* Controls */
+.neu-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--base-color);
+    color: var(--text-main);
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.neu-button:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+}
+
+.neu-input {
+    border: none;
+    background-color: var(--base-color);
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+    border-radius: 8px;
+    padding: 5px;
+    height: 30px;
     cursor: pointer;
 }
 
-.icon img {
-    border-radius: 12px;
-}
 
+
+
+/* Paint App */
+#paint { width: 740px; }
+#paintCanvas {
+    border-radius: 8px;
+    cursor: crosshair;
+}
