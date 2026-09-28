@@ -256,3 +256,30 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
+
+
+
+
+#wth { width: 380px; min-width: 380px; }
+
+.wth-box {
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.wth-icn {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.wth-box h2 {
+    margin: 5px 0;
+    font-size: 32px;
+}
+
+.wth-box p {
+    margin: 0;
+    opacity: 0.8;
+}

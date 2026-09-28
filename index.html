@@ -86,7 +86,7 @@
 
 
 
-<!-- Calculator App -->
+    <!-- Calculator App -->
     <div class="win" id="calc" style="display: none;">
         <div class="winHdr" id="calcHeader">
             <p style="margin-left: 10px;"><b>Calculator</b></p>
@@ -116,6 +116,22 @@
 
 
 
+    <!-- Weather App -->
+    <div class="win" id="wth" style="display: none;">
+        <div class="winHdr" id="wthHeader">
+            <p style="margin-left: 10px;"><b>Weather Application</b></p>
+            <button class="clsBtn" onclick="closeWin('wth')" style="margin-right: 10px;"></button>
+        </div>
+        <div class="app-tlb">
+            <input type="text" id="wthInp" class="neu-inp" placeholder="Enter city..." style="flex-grow: 1;">
+            <button class="neu-btn" onclick="getWth()">Search</button>
+        </div>
+        <div class="neu-ins wth-box">
+            <i class="fa-solid fa-cloud-sun wth-icn"></i>
+            <h2 id="wthTmp">--°C</h2>
+            <p id="wthCity">Search a city</p>
+        </div>
+    </div>
 
 
     <!-- Desktop Icons -->
@@ -131,6 +147,10 @@
         <div class="icon" onclick="handleIconTap(this, 'calc')">
             <i class="fa-solid fa-calculator icn-grp"></i>
             <p style="margin: 0px;">Calculator</p>
+        </div>
+        <div class="icon" onclick="handleIconTap(this, 'wth')">
+            <i class="fa-solid fa-cloud-sun icn-grp"></i>
+            <p style="margin: 0px;">Weather</p>
         </div>
     </div>
 

@@ -280,3 +280,27 @@ function runCalc() {
     }
     document.getElementById('calcDisp').innerText = calcVal;
 }
+
+
+
+
+
+initDrg("wth");
+
+function getWth() {
+    var c = document.getElementById('wthInp').ariaValueMax;
+    if (!c) return;
+
+    fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(c) + '&count=1')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (!d.results) return;
+            var loc = d.results[0];
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=' + loc.latitude + '&longitude=' + loc.longitude + '&current_weather=true')
+                .then(function(r) { return r.json(); })
+                .then(function(wd) {
+                    document.getElementById('wthTmp').innerText = wd.current_weather.temperature + '°C';
+                    document.getElementById('wthCity').innerText = loc.name + ', ' + loc.country;
+                });
+        });
+}
