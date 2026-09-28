@@ -1,104 +1,124 @@
-// ==========================================
-// SYSTEM CLOCK
-// ==========================================
+// Function to update the time each second'
 function updateTime() {
-    document.getElementById('time').innerHTML = new Date().toLocaleString();
+    document.getElementById('time').innerHTML = new Date().toLocaleString();;
 }
+
 setInterval(updateTime, 1000);
 updateTime();
 
-// ==========================================
-// WINDOW MANAGER INTERFACE
-// ==========================================
-let biggestIndex = 1;
-const topbar = document.getElementById('topbar');
 
-function openWindow(windowId) {
-    const element = document.getElementById(windowId);
-    if (!element) return;
-    
-    element.style.display = "block";
-    biggestIndex++;
-    element.style.zIndex = biggestIndex;
-    topbar.style.zIndex = biggestIndex + 1;
+
+
+// Window controls
+var bgIdx = 1;
+var topbar = document.getElementById('topbar');
+
+function openWin(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+
+    el.style.display = "block";
+    bgIdx++;
+    el.style.zIndex = bgIdx;
+    topbar.style.zIndex = bgIdx + 1;
 }
 
-function closeWindow(windowId) {
-    const element = document.getElementById(windowId);
-    if (element) {
-        element.style.display = "none";
+function closeWin(id) {
+    var el = document.getElementById(id);
+    if (el) {
+        el.style.display = "none";
     }
 }
 
-function bringToFront(element) {
-    biggestIndex++;
-    element.style.zIndex = biggestIndex;
-    topbar.style.zIndex = biggestIndex + 1;
+
+function bringFront(el) {
+    bgIdx++;
+    el.style.zIndex = bgIdx;
+    topbar.style.zIndex = bgIdx + 1;
 }
 
-document.getElementById('welcomeOpen').addEventListener("click", () => openWindow('welcome'));
+document.getElementById('welcomeOpen').addEventListener("click", function() {
+    openWin('welcome');
+});
 
-// ==========================================
-// DESKTOP INTERFACE
-// ==========================================
-let selectedIcon = null;
 
-function handleIconTap(element, targetWindowId) {
-    if (element.classList.contains("selected")) {
-        element.classList.remove("selected");
-        selectedIcon = null;
-        openWindow(targetWindowId);
+
+
+// App Selection
+var selIcn = undefined;
+
+function handleIconTap(el, targetId) {
+    if (el.classList.contains("selected")) {
+        el.classList.remove("selected");
+        selIcn = undefined;
+        openWin(targetId);
     } else {
-        if (selectedIcon) selectedIcon.classList.remove("selected");
-        element.classList.add("selected");
-        selectedIcon = element;
+        if (selIcn !== undefined) {
+            selIcn.classList.remove("selected");
+        }
+        el.classList.add("selected");
+        selIcn = el;
     }
 }
 
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.icon') && selectedIcon) {
-        selectedIcon.classList.remove("selected");
-        selectedIcon = null;
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.icon') && selIcn !== undefined) {
+        selIcn.classList.remove("selected");
+        selIcn = undefined;
     }
 });
 
-// ==========================================
-// PHYSICS DRAG ENGINE
-// ==========================================
-function initializeDraggable(windowId) {
-    const windowElement = document.getElementById(windowId);
-    const headerElement = document.getElementById(windowId + "Header");
-    if (!windowElement) return;
 
-    windowElement.addEventListener("mousedown", () => bringToFront(windowElement));
 
-    if (headerElement) {
-        dragElement(windowElement, headerElement);
+
+
+
+
+// Draggable windows
+function initDrg(id) {
+    var win = document.getElementById(id);
+    var hdr = document.getElementById(id + "Header");
+    if (!win) return;
+
+    win.addEventListener("mousedown", () => {
+        bringFront(win);
+    })
+
+    if (hdr) {
+        drgElem(win, hdr);
     }
 }
 
-function dragElement(windowElement, headerElement) {
-    let initialX = 0, initialY = 0, currentX = 0, currentY = 0;
+function drgElem(win, hdr) {
+    var initialX = 0, initialY = 0;
+    var currentX = 0, currentY = 0;
 
-    headerElement.onmousedown = startDragging;
+    hdr.onmousedown = startDragging;
 
     function startDragging(e) {
+        e = e || window.event;
         e.preventDefault();
+
         initialX = e.clientX;
         initialY = e.clientY;
+
         document.onmouseup = stopDragging;
         document.onmousemove = dragAction;
     }
 
     function dragAction(e) {
+        e = e || window.event;
         e.preventDefault();
+
         currentX = initialX - e.clientX;
         currentY = initialY - e.clientY;
+
         initialX = e.clientX;
         initialY = e.clientY;
-        
-        windowElement.style.top = (windowElement.offsetTop - currentY) + "px";
-        windowElement.style.left = (windowElement.offsetLeft - currentX) + "px";
+
+        win.style.top = (win.offsetTop - currentY) + "px";
+        win.style.left = (win.offsetLeft - currentX) + "px";
     }
 
     function stopDragging() {
@@ -107,108 +127,115 @@ function dragElement(windowElement, headerElement) {
     }
 }
 
-initializeDraggable("welcome");
-initializeDraggable("note");
-initializeDraggable("paint");
 
-// ==========================================
-// NOTES APPLICATION LOGIC
-// ==========================================
-let notesData = [
+initDrg("welcome");
+initDrg("nt");
+initDrg("pnt");
+
+
+
+
+// Notes App logic
+var ntsData = [
     {
         title: "Welcome Note",
         date: new Date().toLocaleDateString(),
         content: "Welcome to NeuOS Notes.\nType directly in this window to edit.\nChanges are automatically synchronized to memory."
     }
 ];
-let activeNoteIndex = 0;
+var actNt = 0;
 
-function renderSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.innerHTML = '';
+function rndrSb() {
+    var sb = document.getElementById("sidebar");
+    sb.innerHTML = '';
     
-    notesData.forEach((note, index) => {
-        const noteDiv = document.createElement("div");
-        noteDiv.className = `sidebar-note-item ${index === activeNoteIndex ? 'active-note' : ''}`;
+    for (let i = 0; i < ntsData.length; i++) {
+        var note = ntsData[i];
+        var div = document.createElement("div");
+        div.className = "sb-item" + (i === actNt ? " active-nt" : "");
         
-        noteDiv.innerHTML = `
-            <p class="note-title">${note.title}</p>
-            <p class="note-date">${note.date}</p>
+        div.innerHTML = `
+            <p class="nt-ttl">${note.title}</p>
+            <p class="nt-dt">${note.date}</p>
         `;
         
-        noteDiv.addEventListener("click", () => loadNote(index));
-        sidebar.appendChild(noteDiv);
-    });
+        div.addEventListener("click", function() {
+            ldNt(i);
+        });
+        sb.appendChild(div);
+    }
 }
 
-function loadNote(index) {
-    activeNoteIndex = index;
-    const contentArea = document.getElementById("notesContent");
-    contentArea.innerText = notesData[index].content;
-    renderSidebar();
+
+function ldNt(idx) {
+    actNt = idx;
+    var cnt = document.getElementById("notesContent");
+    cnt.innerText = ntsData[idx].content;
+    rndrSb();
 }
 
 function saveCurrentNote() {
-    if (notesData.length === 0) return;
-    const contentArea = document.getElementById("notesContent");
-    notesData[activeNoteIndex].content = contentArea.innerText;
+    if (ntsData.length === 0) return;
+    var cnt = document.getElementById("notesContent");
+    ntsData[actNt].content = cnt.innerText;
     
-    // Dynamically update title based on first line of content
-    const firstLine = contentArea.innerText.split('\n')[0].trim();
-    notesData[activeNoteIndex].title = firstLine ? firstLine.substring(0, 20) : "New Note";
+    var line = cnt.innerText.split('\n')[0].trim();
+    ntsData[actNt].title = line ? line.substring(0, 20) : "New Note";
     
-    renderSidebar();
+    rndrSb();
 }
 
 function createNewNote() {
-    notesData.push({
+    ntsData.push({
         title: "New Note",
         date: new Date().toLocaleDateString(),
         content: ""
     });
-    loadNote(notesData.length - 1);
+    ldNt(ntsData.length - 1);
 }
 
-// Initialize Notes App
-renderSidebar();
-loadNote(0);
+rndrSb();
+ldNt(0);
 
-// ==========================================
-// PAINT APPLICATION LOGIC
-// ==========================================
-const canvas = document.getElementById('paintCanvas');
-const ctx = canvas.getContext('2d');
-let isPainting = false;
 
-// Solidify background for clean neumorphic look
+
+
+
+
+
+// Paint App logic 
+var cnv = document.getElementById('pntCnv');
+var ctx = cnv.getContext('2d');
+var isPnt = false;
+
 ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--base-color').trim();
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillRect(0, 0, cnv.clientWidth, cnv.height);
 
-function getMousePos(e) {
-    const rect = canvas.getBoundingClientRect();
+function getPos(e) {
+    var rect = cnv.getBoundingClientRect();
     return {
         x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-    };
+        y: e.clientY - rect.top    };
 }
 
-function startPosition(e) {
-    isPainting = true;
-    draw(e);
+
+function strtPnt(e) {
+    isPnt = true;
+    WritableStreamDefaultWriter(e);
 }
 
-function endPosition() {
-    isPainting = false;
+function endPnt() {
+    isPnt = false;
     ctx.beginPath();
 }
 
-function draw(e) {
-    if (!isPainting) return;
+function drw(e) {
+    if (!isPnt) return;
     
-    const pos = getMousePos(e);
-    ctx.lineWidth = document.getElementById('brushSize').value;
+    var pos = getPos(e);
+    ctx.lineWidth = document.getElementById('brushSize').ariaValueMax;
     ctx.lineCap = 'round';
-    ctx.strokeStyle = document.getElementById('colorPicker').value;
+    ctx.strokeStyle = document.getElementById('colorPicker').ariaValueMax;
     
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
@@ -216,12 +243,13 @@ function draw(e) {
     ctx.moveTo(pos.x, pos.y);
 }
 
-function clearCanvas() {
+function clrCnv() {
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--base-color').trim();
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
 }
 
-canvas.addEventListener('mousedown', startPosition);
-canvas.addEventListener('mouseup', endPosition);
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mouseout', endPosition);
+
+cnv.addEventListener('mousedown', strtPnt);
+cnv.addEventListener('mouseup', endPnt);
+cnv.addEventListener('mousemove', drw);
+cnv.addEventListener('mouseout', endPnt);

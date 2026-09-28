@@ -5,28 +5,28 @@
     --text-main: #332a3a;
 }
 
+
 body {
-    background-color: var(--base-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--base-color); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+    width: 100vw; height: 100vh;
+    margin: 0px;
     overflow: hidden;
 }
 
-/* Base Neumorphic Classes */
-.neu-raised {
-    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-    background-color: var(--base-color);
+
+.neu-rs {
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); background-color: var(--base-color);
 }
 
-.neu-inset {
+.neu-ins {
     box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
     background-color: var(--base-color);
 }
 
-/* Topbar Components */
+
+
+
 #topbar {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -41,14 +41,12 @@ body {
     z-index: 1000;
 }
 
-.topbar-icon {
-    margin-left: 15px;
-    font-size: 20px;
-}
+.tpr-icn { margin-left: 15px; font-size: 20px; }
 
 #welcomeOpen:hover {
     cursor: pointer;
     font-weight: bold;
+    transform: scale(105%);
 }
 
 #time {
@@ -56,81 +54,75 @@ body {
     padding-right: 15px;
 }
 
-/* Window Framework */
-.window {
+
+
+
+
+
+
+.win {
     background-color: var(--base-color);
-    border-radius: 20px;
-    padding: 0 20px 20px 20px;
+    border-radius: 20px; padding: 0 20px 20px 20px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
     border: none;
     min-width: 500px;
 }
 
-.windowHeader {
+.winHdr {
     background-color: var(--base-color);
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: -20px; margin-right: -20px;
     padding: 5px 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 20px; border-top-right-radius: 20px;
     box-shadow: inset 0px -4px 6px -4px var(--shadow-dark);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     cursor: grab;
 }
 
-.windowHeader:active {
-    cursor: grabbing;
-}
+.winHdr:active { cursor: grabbing; }
 
-/* Window Controls */
-.closeButton {
+.clsBtn {
     border: none;
     background-color: var(--base-color);
-    width: 30px;
-    height: 30px;
+    width: 30px; height: 30px;
     border-radius: 50%;
     box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
     transition: all 0.2s ease;
     position: relative;
 }
 
-.closeButton::before, .closeButton::after {
+.clsBtn::before, .clsBtn::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 2px;
+    top: 50%; left: 50%;
+    width: 12px; height: 2px;
     background-color: var(--text-main);
 }
 
-.closeButton::before { transform: translate(-50%, -50%) rotate(45deg); }
-.closeButton::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.clsBtn::before { transform: translate(-50%, -50%) rotate(45deg); }
+.clsBtn::after { transform: translate(-50%, -50%) rotate(-45deg); }
 
-.closeButton:hover { cursor: pointer; }
-.closeButton:active {
+.clsBtn:hover {
+    cursor: pointer;
+    transform: scale(110%);
+}
+
+.clsBtn:active {
     box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
-/* Desktop Environment */
+
 #desktopApps {
-    padding-top: 100px;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
+    padding-top: 100px; padding-left: 20px;
+    display: flex; flex-direction: column;
     gap: 20px;
 }
 
 .icon {
     text-align: center;
-    width: 80px;
-    padding: 15px;
+    width: 80px; padding: 15px;
     border-radius: 16px;
     box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
     background-color: var(--base-color);
@@ -139,7 +131,7 @@ body {
 }
 
 .icon p {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0 0px;
     font-size: 14px;
 }
 
@@ -149,107 +141,96 @@ body {
     box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
-.icon-graphic {
+.icn-grp {
     font-size: 35px;
     color: var(--text-main);
 }
 
-/* App Specific Layouts */
-.app-toolbar {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    gap: 10px;
+
+
+
+.app-tlb {
+    display: flex; align-items: center;
+    padding: 10px 0px; gap: 10px;
 }
 
-.toolbar-icon {
+.tlb-icn {
     font-size: 25px;
-    padding: 10px;
-    border-radius: 50%;
+    padding: 10px; border-radius: 50%;
     box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
 }
 
-.app-layout {
-    display: flex;
-    gap: 15px;
+.app-lyt {
+    display: flex; gap: 15px;
     border-radius: 10px;
     height: 400px;
 }
 
-/* Notes App */
-#note { width: 850px; }
+
+
+
+#nt { width: 850px; }
 
 #sidebar {
     width: 200px;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 8px; padding: 15px;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: flex; flex-direction: column; gap: 10px;
 }
 
-.sidebar-note-item {
-    padding: 10px;
-    border-radius: 8px;
+.sb-item {
+    padding: 10px; border-radius: 8px;
     cursor: pointer;
     box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
     transition: all 0.1s ease;
 }
 
-.sidebar-note-item.active-note {
+.sb-item.active-nt {
     box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
 }
 
-.sidebar-note-item p { margin: 0; }
-.sidebar-note-item .note-title { font-weight: bold; }
-.sidebar-note-item .note-date { font-size: 12px; opacity: 0.7; margin-top: 5px; }
+.sb-item p { margin: 0px; }
+.sb-item .nt-ttl { font-weight: bold; }
+.sb-item .nt-dt { font-size: 12px; opacity: 0.7; margin-top: 5px; }
 
 #notesContent {
-    flex-grow: 1;
-    border-radius: 8px;
-    padding: 20px;
-    outline: none;
-    overflow-y: auto;
-    white-space: pre-wrap;
+    flex-grow: 1; border-radius: 8px;
+    padding: 20px; outline: none;
+    overflow-y: auto; white-space: pre-wrap;
 }
 
 
 
 
 
-/* Controls */
-.neu-button {
+
+
+.neu-btn {
     padding: 8px 15px;
-    border: none;
-    border-radius: 8px;
+    border: none; border-radius: 8px;
     background-color: var(--base-color);
     color: var(--text-main);
     box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
-    cursor: pointer;
-    font-weight: bold;
+    cursor: pointer; font-weight: bold;
 }
 
-.neu-button:active {
+.neu-btn:active {
     box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
-.neu-input {
+.neu-inp {
     border: none;
     background-color: var(--base-color);
     box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-    border-radius: 8px;
-    padding: 5px;
-    height: 30px;
+    border-radius: 8px; padding: 5px; height: 30px;
     cursor: pointer;
 }
 
 
 
 
-/* Paint App */
-#paint { width: 740px; }
-#paintCanvas {
+#pnt { width: 740px; }
+#pntCnv {
     border-radius: 8px;
     cursor: crosshair;
 }

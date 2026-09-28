@@ -12,12 +12,9 @@
 
 
 
-
-
-
     <!-- Topbar -->
     <div id="topbar">
-        <i class="fa-solid fa-circle-user topbar-icon"></i>
+        <i class="fa-solid fa-circle-user tpr-icn"></i>
         <p id="welcomeOpen">NeuOS</p>
         <p id="time">00:00:00</p>
     </div>
@@ -27,11 +24,12 @@
 
 
 
+
     <!-- Welcome Message App -->
-    <div class="window" id="welcome">
-        <div class="windowHeader" id="welcomeHeader">
-            <p>Welcome Message</p>
-            <button class="closeButton" onclick="closeWindow('welcome')"></button>
+    <div class="win" id="welcome">
+        <div class="winHdr" id="welcomeHeader">
+            <p style="margin-left: 10px;"><b>Welcome Message</b></p>
+            <button class="clsBtn" onclick="closeWin('welcome')" style="margin-right: 10px;"></button>
         </div>
         <h1>Welcome to NeuOS</h1>
         <div id="intro-message">
@@ -43,31 +41,24 @@
 
 
 
-
-
-
     <!-- Notes App -->
-    <div class="window" id="note" style="display: none;">
-        <div class="windowHeader" id="noteHeader">
-            <p>Notes Application</p>
-            <button class="closeButton" onclick="closeWindow('note')"></button>
+    <div class="win" id="nt" style="display: none;">
+        <div class="winHdr" id="ntHeader">
+            <p style="margin-left: 10px;"><b>Notes Application</b></p>
+            <button class="clsBtn" onclick="closeWin('nt')" style="margin-right: 10px;"></button>
         </div>
-        <div class="app-toolbar">
-            <i class="fa-solid fa-note-sticky toolbar-icon"></i>
+        <div class="app-tlb">
+            <i class="fa-solid fa-note-sticky tlb-icn"></i>
             <p style="flex-grow: 1;">Notes Editor</p>
-            <button class="neu-button" onclick="createNewNote()">New Note</button>
+            <button class="neu-btn" onclick="createNewNote()">New Note</button>
         </div>
-        <div class="app-layout">
-            <div id="sidebar" class="neu-inset">
-                <!-- Sidebar items injected via JS -->
+        <div class="app-lyt">
+            <div id="sidebar" class="neu-ins">
             </div>
-            <div id="notesContent" class="neu-inset" contenteditable="true" oninput="saveCurrentNote()">
-                <!-- Note content injected via JS -->
+            <div id="notesContent" class="neu-ins" contenteditable="true" oninput="saveCurrentNote()">
             </div>
         </div>
     </div>
-
-
 
 
 
@@ -76,36 +67,35 @@
 
 
     <!-- Paint App -->
-    <div class="window" id="paint" style="display: none;">
-        <div class="windowHeader" id="paintHeader">
-            <p>Paint Application</p>
-            <button class="closeButton" onclick="closeWindow('paint')"></button>
+    <div class="win" id="pnt" style="display: none;">
+        <div class="winHdr" id="pntHeader">
+            <p style="margin-left: 10px;"><b>Paint Application</b></p>
+            <button class="clsBtn" onclick="closeWin('pnt')" style="margin-right: 10px;"></button>
         </div>
-        <div class="app-toolbar">
-            <i class="fa-solid fa-palette toolbar-icon"></i>
+        <div class="app-tlb">
+            <i class="fa-solid fa-palette tlb-icn"></i>
             <p style="flex-grow: 1;">Canvas Setup</p>
-            <input type="color" id="colorPicker" value="#332a3a" class="neu-input" title="Select Color">
-            <input type="range" id="brushSize" min="1" max="20" value="5" class="neu-input" title="Brush Size">
-            <button class="neu-button" onclick="clearCanvas()">Clear Canvas</button>
+            <input type="color" id="colorPicker" value="#332a3a" class="neu-inp" title="Select Color">
+            <input type="range" id="brushSize" min="1" max="20" value="5" class="neu-inp" title="Brush Size">
+            <button class="neu-btn" onclick="clearCanvas()">Clear Canvas</button>
         </div>
-        <div class="app-layout">
-            <canvas id="paintCanvas" class="neu-inset" width="700" height="400"></canvas>
+        <div class="app-lyt">
+            <canvas id="pntCnv" class="neu-ins" width="700" height="400"></canvas>
         </div>
     </div>
 
 
 
 
-
     <!-- Desktop Icons -->
-    <div id="desktopApps">
-        <div class="icon" onclick="handleIconTap(this, 'note')">
-            <i class="fa-solid fa-note-sticky icon-graphic"></i>
-            <p>Notes</p>
+    <div id="desktopApps" style="padding-top: 100px; padding-left: 20px;">
+        <div class="icon" onclick="handleIconTap(this, 'nt')">
+            <i class="fa-solid fa-note-sticky icn-grp"></i>
+            <p style="margin: 0px;">Notes</p>
         </div>
-        <div class="icon" onclick="handleIconTap(this, 'paint')">
-            <i class="fa-solid fa-palette icon-graphic"></i>
-            <p>Paint</p>
+        <div class="icon" onclick="handleIconTap(this, 'pnt')">
+            <i class="fa-solid fa-palette icn-grp"></i>
+            <p style="margin: 0px;">Paint</p>
         </div>
     </div>
 
