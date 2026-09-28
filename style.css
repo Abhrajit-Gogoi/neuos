@@ -234,3 +234,25 @@ body {
     border-radius: 8px;
     cursor: crosshair;
 }
+
+
+
+
+
+
+#calc { width: 320px; min-width: 320px; }
+
+.calc-disp {
+    font-size: 24px;
+    text-align: right;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}

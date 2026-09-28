@@ -253,3 +253,30 @@ cnv.addEventListener('mousedown', strtPnt);
 cnv.addEventListener('mouseup', endPnt);
 cnv.addEventListener('mousemove', drw);
 cnv.addEventListener('mouseout', endPnt);
+
+
+
+
+initDrg("calc");
+
+var calcVal = "0";
+
+function appCalc(v) {
+    if (calcVal === "0") calcVal = v;
+    else calcVal += v;
+    document.getElementById('calcDisp').innerText = calcVal;
+}
+
+function clrCalc() {
+    calcVal = "0";
+    document.getElementById('calcDisp').innerText = calcVal;
+}
+
+function runCalc() {
+    try {
+        calcVal = String(eval(calcVal));
+    } catch (e) {
+        calcVal = "Error";
+    }
+    document.getElementById('calcDisp').innerText = calcVal;
+}
