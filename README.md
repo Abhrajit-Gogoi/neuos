@@ -2,6 +2,9 @@
 This is a neumorphic browseer based OS with cool features!!!
 This was inspired because my last project seemed to do really bad- like really really bad and i barely got and stardust out of the hours i put in it. So i consulted my friend who advised me on design principles and introduced me to neumorphism. 
 
+## note:
+Double click to open the apps
+
 ## features:
 - 3 color based themes which honestly look really cool
 - a notes app with the ability to store multiple notes in local storage
