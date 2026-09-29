@@ -123,7 +123,7 @@
             <button class="clsBtn" onclick="closeWin('wth')" style="margin-right: 10px;"></button>
         </div>
         <div class="app-tlb">
-            <input type="text" id="wthInp" class="neu-inp" placeholder="Enter city..." style="flex-grow: 1;">
+            <input type="text" id="wthInp" class="neu-inp" placeholder="Enter city..." style="flex-grow: 1;" onkeypress="if(event.key==='Enter')getWth()">
             <button class="neu-btn" onclick="getWth()">Search</button>
         </div>
         <div class="neu-ins wth-box">
@@ -134,23 +134,81 @@
     </div>
 
 
+
+<!-- Browser App -->
+    <div class="win" id="brw" style="display: none;">
+        <div class="winHdr" id="brwHeader">
+            <p style="margin-left: 10px;"><b>Web Browser</b></p>
+            <button class="clsBtn" onclick="closeWin('brw')" style="margin-right: 10px;"></button>
+        </div>
+        <div class="app-tlb">
+            <i class="fa-solid fa-globe tlb-icn"></i>
+            <input type="text" id="brwInp" class="neu-inp" placeholder="Search Google..." style="flex-grow: 1;" onkeypress="if(event.key==='Enter')srchWeb()">
+            <button class="neu-btn" onclick="srchWeb()">Search</button>
+        </div>
+        <div class="neu-ins brw-body">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 40px; opacity: 0.5;"></i>
+            <p>Enter search query above to browse web</p>
+        </div>
+    </div>
+
+
+
+
+
+
+<!-- Themes App -->
+    <div class="win" id="thm" style="display: none;">
+        <div class="winHdr" id="thmHeader">
+            <p style="margin-left: 10px;"><b>Themes</b></p>
+            <button class="clsBtn" onclick="closeWin('thm')" style="margin-right: 10px;"></button>
+        </div>
+        <div class="thm-list">
+            <button class="neu-btn" onclick="setThm('default')">Lavender</button>
+            <button class="neu-btn" onclick="setThm('blue')">Blue</button>
+            <button class="neu-btn" onclick="setThm('black')">Black</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
     <!-- Desktop Icons -->
     <div id="desktopApps" style="padding-top: 100px; padding-left: 20px;">
         <div class="icon" onclick="handleIconTap(this, 'nt')">
             <i class="fa-solid fa-note-sticky icn-grp"></i>
             <p style="margin: 0px;">Notes</p>
         </div>
+
         <div class="icon" onclick="handleIconTap(this, 'pnt')">
             <i class="fa-solid fa-palette icn-grp"></i>
             <p style="margin: 0px;">Paint</p>
         </div>
+
         <div class="icon" onclick="handleIconTap(this, 'calc')">
             <i class="fa-solid fa-calculator icn-grp"></i>
             <p style="margin: 0px;">Calculator</p>
         </div>
+
         <div class="icon" onclick="handleIconTap(this, 'wth')">
             <i class="fa-solid fa-cloud-sun icn-grp"></i>
             <p style="margin: 0px;">Weather</p>
+
+        </div>
+
+
+        <div class="icon" onclick="handleIconTap(this, 'brw')">
+            <i class="fa-solid fa-compass icn-grp"></i>
+            <p style="margin: 0px;">Browser</p>
+        </div>
+
+        <div class="icon" onclick="handleIconTap(this, 'thm')">
+            <i class="fa-solid fa-fill-drip icn-grp"></i>
+            <p style="margin: 0px;">Themes</p>
         </div>
     </div>
 

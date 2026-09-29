@@ -7,12 +7,18 @@
 
 
 body {
-    background-color: var(--base-color); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--base-color);
+    background-image: url('img/violet.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
     width: 100vw; height: 100vh;
     margin: 0px;
     overflow: hidden;
 }
+
 
 
 .neu-rs {
@@ -282,4 +288,55 @@ body {
 .wth-box p {
     margin: 0;
     opacity: 0.8;
+}
+
+#brw { width: 550px; min-width: 550px; }
+
+.brw-body {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+
+
+
+
+
+#thm { width: 320px; min-width: 320px; }
+
+.thm-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px 0;
+}
+
+body.thm-default {
+    background-image: url('img/violet.jpg');
+    --base-color: #231633;
+    --shadow-light: #311f47;
+    --shadow-dark: #150d1f;
+    --text-main: #eadef7;
+}
+
+body.thm-blue {
+    background-image: url('img/blue.jpg');
+    --base-color: #cbe0e8;
+    --shadow-light: #eaf8ff;
+    --shadow-dark: #a2b7c0;
+    --text-main: #1b2832;
+}
+
+body.thm-black {
+    background-image: url('img/black.jpg');
+    --base-color: #0f1012;
+    --shadow-light: #191b1f;
+    --shadow-dark: #050506;
+    --text-main: #e1e1e1;
 }

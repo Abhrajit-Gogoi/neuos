@@ -288,19 +288,45 @@ function runCalc() {
 initDrg("wth");
 
 function getWth() {
-    var c = document.getElementById('wthInp').ariaValueMax;
+    var c = document.getElementById('wthInp').value;
     if (!c) return;
 
     fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(c) + '&count=1')
         .then(function(r) { return r.json(); })
         .then(function(d) {
-            if (!d.results) return;
+            if (!d.results || !d.results.length) {
+                document.getElementById('wthCity').innerText = "Not found";
+                document.getElementById('wthTmp').innerText = "--°C";
+                return;
+            }
             var loc = d.results[0];
             fetch('https://api.open-meteo.com/v1/forecast?latitude=' + loc.latitude + '&longitude=' + loc.longitude + '&current_weather=true')
                 .then(function(r) { return r.json(); })
                 .then(function(wd) {
-                    document.getElementById('wthTmp').innerText = wd.current_weather.temperature + '°C';
-                    document.getElementById('wthCity').innerText = loc.name + ', ' + loc.country;
+                    if (wd && wd.current_weather) {
+                        document.getElementById('wthTmp').innerText = wd.current_weather.temperature + '°C';
+                        document.getElementById('wthCity').innerText = loc.name + (loc.country ? ', ' + loc.country : '');
+                    }
                 });
+        })
+        .catch(function() {
+            document.getElementById('wthCity').innerText = "Error loading";
         });
+}
+
+
+initDrg("brw");
+
+function srchWeb() {
+    var q = document.getElementById('brwInp').value;
+    if (q) {
+        window.open('https://www.google.com/search?q=' + encodeURIComponent(q), '_blank');
+    }
+}
+
+initDrg("thm");
+
+function setThm(t) {
+    document.body.className = 'thm-' + t;
+    clrCnv();
 }
