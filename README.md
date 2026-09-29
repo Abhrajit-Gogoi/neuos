@@ -22,3 +22,7 @@ demo lonk: https://abhrajit-gogoi.github.io/neuos/
 
 ![alt text](image.png)
 
+credits: 
+- wallpaper: https://4kwallpapers.com/anime/
+- basic structure: hackclub tutorial
+- and numerous youtube tutorials
