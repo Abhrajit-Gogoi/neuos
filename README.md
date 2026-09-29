@@ -19,3 +19,6 @@ it was completely turning around the design and arranging philosophy of the proj
 i learnt a lot of things about design and how js can do almost anything i would want to put in the project. I learnt good css making.
 
 demo lonk: https://abhrajit-gogoi.github.io/neuos/
+
+![alt text](image.png)
+
