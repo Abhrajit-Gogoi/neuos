@@ -26,3 +26,4 @@ credits:
 - wallpaper: https://4kwallpapers.com/anime/
 - basic structure: hackclub tutorial
 - and numerous youtube tutorials
+- icons: font awesome
