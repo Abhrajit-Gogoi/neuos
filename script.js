@@ -13,22 +13,7 @@ updateTime();
 var bgIdx = 1;
 var topbar = document.getElementById('topbar');
 
-function openWin(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
 
-    el.style.display = "block";
-    bgIdx++;
-    el.style.zIndex = bgIdx;
-    topbar.style.zIndex = bgIdx + 1;
-}
-
-function closeWin(id) {
-    var el = document.getElementById(id);
-    if (el) {
-        el.style.display = "none";
-    }
-}
 
 
 function bringFront(el) {
@@ -330,3 +315,76 @@ function setThm(t) {
     document.body.className = 'thm-' + t;
     clrCnv();
 }
+
+
+
+
+
+var appIcns = {
+    'welcome': 'fa-circle-user',
+    'nt': 'fa-note-sticky',
+    'pnt': 'fa-palette',
+    'calc': 'fa-calculator',
+    'thm': 'fa-fill-drip',
+    'wth': 'fa-cloud-sun',
+    'brw': 'fa-compass'
+};
+var opnWins = ['welcome'];
+
+function openWin(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+
+    el.style.display = "block";
+    bgIdx++;
+    el.style.zIndex = bgIdx;
+    topbar.style.zIndex = bgIdx + 1;
+    if (!opnWins.includes(id)) opnWins.push(id);
+    updTsk();
+}
+
+function closeWin(id) {
+    var el = document.getElementById(id);
+    if (el) {
+        el.style.display = "none";
+    }
+    opnWins = opnWins.filter(function(w) { return w !== id; });
+    updTsk();
+}
+
+function updTsk() {
+    var tb = document.getElementById('taskbar');
+    if (!tb) return;
+    tb.innerHTML = '';
+    for (var i = 0; i < opnWins.length; i++) {
+        var id = opnWins[i];
+        var icn = appIcns[id] || 'fa-window-maximize';
+        var d = document.createElement('div');
+        d.className = 'tsk-item';
+        d.innerHTML = '<i class="fa-solid ' + icn + '"></i>';
+        (function(wId) {
+            d.onclick = function() {
+                var el = document.getElementById(wId);
+                if (el) bringFront(el);
+            };
+        })(id);
+        tb.appendChild(d);
+    }
+}
+
+updTsk();
+
+var ldVal = 0;
+var ldItv = setInterval(function() {
+    ldVal += 5;
+    var b = document.getElementById('ldBar');
+    if (b) b.style.width = ldVal + '%';
+    if (ldVal >= 100) {
+        clearInterval(ldItv);
+        var s = document.getElementById('ldScr');
+        if (s) {
+            s.style.opacity = '0';
+            setTimeout(function() { s.style.display = 'none'; }, 500);
+        }
+    }
+}, 50);

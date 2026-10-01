@@ -340,3 +340,58 @@ body.thm-black {
     --shadow-dark: #050506;
     --text-main: #e1e1e1;
 }
+
+
+#ldScr {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #e0d4eb;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.ld-bar-bg {
+    width: 200px; height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #b8abc2;
+}
+
+#ldBar {
+    width: 0%; height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+#taskbar {
+    position: absolute;
+    bottom: 15px; left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    padding: 0 10px;
+    display: flex; align-items: center; gap: 10px;
+    background-color: var(--base-color);
+    border-radius: 15px;
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    z-index: 1000;
+}
+
+.tsk-item {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    cursor: pointer;
+    font-size: 18px;
+    background-color: var(--base-color);
+    color: var(--text-main);
+}
+
+.tsk-item:active {
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+
+
