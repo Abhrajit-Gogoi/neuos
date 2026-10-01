@@ -366,29 +366,40 @@ body.thm-black {
     transition: width 0.1s linear;
 }
 
+
+
+
 #taskbar {
     position: absolute;
     bottom: 15px; left: 50%;
     transform: translateX(-50%);
-    height: 50px;
+    height: 38px;
+    min-width: 25vw;
+    width: max-content;
+    box-sizing: border-box;
     padding: 0 10px;
-    display: flex; align-items: center; gap: 10px;
-    background-color: var(--base-color);
-    border-radius: 15px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background-color: color-mix(in srgb, var(--shadow-dark) 60%, transparent);
+    border-radius: 12px;
     box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
     z-index: 1000;
 }
 
 .tsk-item {
-    width: 40px; height: 40px;
-    border-radius: 10px;
+    width: 28px; height: 28px;
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
     cursor: pointer;
-    font-size: 18px;
+    font-size: 14px;
     background-color: var(--base-color);
     color: var(--text-main);
 }
+
+
+
+
+
 
 .tsk-item:active {
     box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
