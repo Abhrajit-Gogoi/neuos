@@ -189,12 +189,13 @@ ldNt(0);
 
 
 // Paint App logic 
+
 var cnv = document.getElementById('pntCnv');
 var ctx = cnv.getContext('2d');
 var isPnt = false;
 
-ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--base-color').trim();
-ctx.fillRect(0, 0, cnv.clientWidth, cnv.height);
+ctx.fillStyle = '#ffffff';
+ctx.fillRect(0, 0, cnv.width, cnv.height);
 
 function getPos(e) {
     var rect = cnv.getBoundingClientRect();
@@ -202,7 +203,6 @@ function getPos(e) {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top    };
 }
-
 
 function strtPnt(e) {
     isPnt = true;
@@ -218,9 +218,9 @@ function drw(e) {
     if (!isPnt) return;
     
     var pos = getPos(e);
-    ctx.lineWidth = document.getElementById('brushSize').ariaValueMax;
+    ctx.lineWidth = document.getElementById('brushSize').value;
     ctx.lineCap = 'round';
-    ctx.strokeStyle = document.getElementById('colorPicker').ariaValueMax;
+    ctx.strokeStyle = document.getElementById('colorPicker').value;
     
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
@@ -229,15 +229,23 @@ function drw(e) {
 }
 
 function clrCnv() {
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--base-color').trim();
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, cnv.width, cnv.height);
 }
-
 
 cnv.addEventListener('mousedown', strtPnt);
 cnv.addEventListener('mouseup', endPnt);
 cnv.addEventListener('mousemove', drw);
 cnv.addEventListener('mouseout', endPnt);
+
+
+
+
+
+
+
+
+
 
 
 
